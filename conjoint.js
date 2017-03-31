@@ -9,95 +9,35 @@ Math.seedrandom('${e://Field/seed1}');
 //Math.seedrandom('${e://Field/seed2}');
 // conjoint profile 3
 //Math.seedrandom('${e://Field/seed3}');
-// conjoint profile 4
-//Math.seedrandom('${e://Field/seed4}');
-// conjoint profile 5
-//Math.seedrandom('${e://Field/seed5}');
 
 // Create Variables for Traits associated with each dimension.
-var vsex = ["Male", "Female"];
-var voccupation = ["State Governor", "U.S. Senator", "Member of Congress", "CEO"];
-if (Math.random() >= 0.5) {
-    var vparty = ["Republican", "Democrat"];
-} else {
-    var vparty = ["Democrat", "Republican"];
-}
-var vmilitary = ["Served", "Did not serve"];
-var veduc = ["Community college", "State university", "Small college", "Ivy League university"];
-var vopinion = ["Strongly oppose", "Moderately oppose", "Slightly oppose", "Neither Support Nor Oppose", "Slightly support", "Moderately support", "Strongly support"];
+var vjobhist = ["Accepted help, worked hard, and completed training", "Declined help and did not complete training"];
+var vhealthist = ["Accepted help, fought hard, and quit smoking", "Declined help and did not stop smoking"];
+var vemploy = ["Recently unemployed", "Employed"];
+var vhealth = ["Recent lung disease diagnosis", "Healthy"];
+var vfriends = ["Mostly hard-working people", "Mostly lazy people"];
 
-// Functions for setting race and religion approximately proportionately
-function getRace(){
-  // 60% non-hispanic white; 15% black; 15% hispanic; 10% asian
-  var n = Math.floor(Math.random()*100);
-  if (n<10) {
-    var out = 3;
-  } else if (n <25) {
-    var out = 2;
-  } else if (n<40) {
-    var out = 1;
-  } else {
-    var out = 0;
-  }
-  var vrace = ["White", "African American", "Hispanic", "Asian American"];
-  return vrace[out];
-}
-function getReligion(){
-  // 20% evangelical; 20% mainline; 20% catholic; 10% jewish; 10% muslim; 20% none
-  var n = Math.floor(Math.random()*100);
-  if (n<20) {
-    var out = 5;
-  } else if (n<30) {
-    var out = 4;
-  } else if (n<40) {
-    var out = 3;
-  } else if (n<60) {
-    var out = 2;
-  } else if (n<80) {
-    var out = 1;
-  } else {
-    var out = 0;
-  }
-  var vreligion = ["Evangelical protestant", "Mainline protestant", "Catholic", "Jewish", "Muslim", "None"];
-  return vreligion[out];
-}
+// Use math.random to randomly select traits for each dimension for applicant A
+traits_a = [ vjobhist[Math.floor(Math.random()*vjobhist.length)],
+             vhealthhist[Math.floor(Math.random()*vhealthhist.length)],
+             vemploy[Math.floor(Math.random()*vemploy.length)],
+             vhealth[Math.floor(Math.random()*vhealth.length)],
+             vfriends[Math.floor(Math.random()*vfriends.length)] ];
 
-// Use math.random to randomly select traits for each dimension for candidate A
-traits_a = [(Math.floor(Math.random() * (75 - 35 + 1)) + 35).toString(),
-            vsex[Math.floor(Math.random()*vsex.length)],
-            getRace(),
-            getReligion(),
-            voccupation[Math.floor(Math.random()*voccupation.length)],
-            vparty[0],
-            vmilitary[Math.floor(Math.random()*vmilitary.length)],
-            veduc[Math.floor(Math.random()*veduc.length)],
-            vopinion[Math.floor(Math.random()*vopinion.length)],
-            vopinion[Math.floor(Math.random()*vopinion.length)],
-            vopinion[Math.floor(Math.random()*vopinion.length)],
-            vopinion[Math.floor(Math.random()*vopinion.length)],
-            vopinion[Math.floor(Math.random()*vopinion.length)] ];
+// Use math.random to randomly select traits for each dimension for applicant B
+traits_b = [ vjobhist[Math.floor(Math.random()*vjobhist.length)],
+             vhealthhist[Math.floor(Math.random()*vhealthhist.length)],
+             vemploy[Math.floor(Math.random()*vemploy.length)],
+             vhealth[Math.floor(Math.random()*vhealth.length)],
+             vfriends[Math.floor(Math.random()*vfriends.length)] ];
 
-// Use math.random to randomly select traits for each dimension for candidate B
-traits_b = [(Math.floor(Math.random() * (75 - 35 + 1)) + 35).toString(),
-            vsex[Math.floor(Math.random()*vsex.length)],
-            getRace(),
-            getReligion(),
-            voccupation[Math.floor(Math.random()*voccupation.length)],
-            vparty[1],
-            vmilitary[Math.floor(Math.random()*vmilitary.length)],
-            veduc[Math.floor(Math.random()*veduc.length)],
-            vopinion[Math.floor(Math.random()*vopinion.length)],
-            vopinion[Math.floor(Math.random()*vopinion.length)],
-            vopinion[Math.floor(Math.random()*vopinion.length)],
-            vopinion[Math.floor(Math.random()*vopinion.length)],
-            vopinion[Math.floor(Math.random()*vopinion.length)] ];
 
 // Create list of variables to use when setting attributes
-a_list = ["a1","a2","a3","a4","a5","a6","a7","a8","a9","a10","a11","a12","a13"]; 
-b_list = ["b1","b2","b3","b4","b5","b6","b7","b8","b9","b10","b11","b12","b13"]; 
+a_list = ["a1","a2","a3","a4","a5"]; 
+b_list = ["b1","b2","b3","b4","b5"]; 
 
 // set html values in conjoint table
-for(i=0;i<13;i++){
+for(i=0;i<5;i++){
     document.getElementById(a_list[i]).innerHTML = traits_a[i];
     document.getElementById(b_list[i]).innerHTML = traits_b[i];
 }
